@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/forms.css">
   <style>
-    #output{
+    #container{
       border-radius: 5px;
       min-height: 40px;
       border:1px solid black;
@@ -33,7 +33,7 @@
  
     <h2 class="subheader">Place form code below:</h2>
     <div id="output"></div>
-    <form method="post" action="" class="main-form">
+    <form method="get" action="" class="main-form">
       <div>
         <label for="input">Input</label><br>
         <input type="text" name="input" id="input" placeholder="Input" required autofocus>  
@@ -52,17 +52,31 @@
   </main>
   <script src="js/main.js"></script> 
   <script>
-    const mySubmit = document.querySelector("#submit");
-    console.log(mySubmit);
 
-    mySubmit.addEventListener("click",function(ev){
-      ev.preventDefault();
-      const myInput = document.querySelector("#input");
-      const myOutput = document.querySelector("#output");
-      myOutput.innerHTML = myInput.value;
+const queryString = window.location.search;
 
-      //alert(myInput.value);
-    });
+const urlParams = new URLSearchParams(queryString);
+
+if(queryString.length > 0){//form submitted!
+     let myOutput = `<div id="container">`;//will store data for display
+       //alert("Data submitted!");
+       if(urlParams.has("input")){
+           //alert(urlParams.get("input"));
+
+
+           let myInput = urlParams.get("input");
+
+
+
+
+           myOutput += `<p>You input ${myInput}</p>`;
+       }
+       myOutput += `<p><a href="index.html">CLEAR</a></p>`; 
+     myOutput += `</div>`;
+   
+     document.querySelector("#output").innerHTML = myOutput;
+   }
+
 
   </script>  
  </body>
