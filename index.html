@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-     <title>Title Case</title>
+     <title>Get Even</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/main.css">
@@ -20,7 +20,7 @@
  </head>
  <body>
      <header>
-     <h1 class="page-header">Title Case</h1>
+     <h1 class="page-header">Get Even</h1>
         <nav class="topnav" id="myTopnav">
             <a href="index.html" class="active">Home</a>
             <a href="#">Link</a>
@@ -41,8 +41,9 @@
       <div>
         <input type="submit" id="submit">
       </div>
-
     </form>
+      <p>This website allow you to input a number and output if the number is even or odd!</p>
+      <br>
       <p><small>&copy; 2021-<span id="this-year"></span> by 
           YOUR NAME HERE, All Rights Reserved ~ 
           <a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
@@ -52,6 +53,15 @@
   </main>
   <script src="js/main.js"></script> 
   <script>
+
+function getEven(num){
+  if(num % 2 ==0){//even
+    return true;
+  }else{//odd
+    return false;
+  }
+}
+
 
 const queryString = window.location.search;
 
@@ -63,20 +73,20 @@ if(queryString.length > 0){//form submitted!
        if(urlParams.has("input")){
            //alert(urlParams.get("input"));
 
-
            let myInput = urlParams.get("input");
 
-
-
-
-           myOutput += `<p>You input ${myInput}</p>`;
+           if(getEven(myInput)){//even output
+            myOutput += `<p>You input <b>${myInput}</b> and the number is even</p>`;
+          }else{//odd output
+            myOutput += `<p>You input <b>${myInput}</b> and the number is odd</p>`;
+          }
+  
        }
        myOutput += `<p><a href="index.html">CLEAR</a></p>`; 
      myOutput += `</div>`;
    
      document.querySelector("#output").innerHTML = myOutput;
-   }
-
+    }
 
   </script>  
  </body>
